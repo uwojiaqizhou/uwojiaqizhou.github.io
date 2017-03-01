@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next mist use-motion" lang="en">
+<html class="theme-next pisces use-motion" lang="en">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -77,6 +77,8 @@
 
 
 
+  <link rel="alternate" href="/atom.xml" title="Jiaqi Zhou" type="application/atom+xml" />
+
 
 
 
@@ -107,7 +109,7 @@ See also: Customizing Deployments
 <meta property="og:image" content="https://cloud.githubusercontent.com/assets/4468967/10491868/aaa00efe-725d-11e5-9225-8764e54ab336.png">
 <meta property="og:image" content="https://cloud.githubusercontent.com/assets/4468967/10491866/aa9ddada-725d-11e5-8311-827ba59a8f05.png">
 <meta property="og:image" content="https://cloud.githubusercontent.com/assets/4468967/10491870/aaacacfe-725d-11e5-9395-04018262eb68.png">
-<meta property="og:updated_time" content="2017-03-01T00:46:47.000Z">
+<meta property="og:updated_time" content="2017-03-01T02:19:51.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Custom deploymenet">
 <meta name="twitter:description" content="Note: This page is sourced from a 3-part blog series which explains the feature in detail.
@@ -122,7 +124,7 @@ See also: Customizing Deployments
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Mist',
+    scheme: 'Pisces',
     sidebar: {"position":"left","display":"always","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
     fancybox: true,
     motion: true,
@@ -292,7 +294,7 @@ See also: Customizing Deployments
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Jiaqi Zhou">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://68.media.tumblr.com/4d7080b0ccb45bb29bdd3572f10555d3/tumblr_oijnwmyioT1w16ewao1_r2_400.jpg">
+      <meta itemprop="image" content="/images/jiaqi.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -386,6 +388,7 @@ See also: Customizing Deployments
 <hr>
 <p>#Custom Deployment Scripts For Microsoft Azure Web Apps (Websites) Using Git Deployment</p>
 <p>The coolest feature on Microsoft Azure Web Apps is the ability to deploy your website using git.<br>Do a <code>git push</code> and bam you’re done and deployed within seconds.<br>The deployment process is automated, the process will look at the files on the git repository and decide which kind of website it is (asp.net, node, …) and based on that will do the required steps for the deployment.</p>
+<a id="more"></a>
 <p>For example for an MVC web app it’ll find the solution file and determine which project is the actual web app project and with those it’ll msbuild that project, the artifacts from the build will be placed in a temporary folder and only the files that were changed will be copied to the wwwroot location for the actual deployment.</p>
 <p>The nice thing is that files that were removed will also be removed on the wwwroot location but only if they were actually deployed the previous time (so files that are generated on the fly on the wwwroot directory won’t be removed).</p>
 <p>So what if you want to customize the deployment process, for example you want to run your tests before deploying (or after) and cancel the deployment if they fail?</p>
@@ -560,8 +563,8 @@ xcopy %DEPLOYMENT_SOURCE% %DEPLOYMENT_TARGET% /Y
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/02/21/Running-tests/" rel="prev" title="running tests">
-                running tests <i class="fa fa-chevron-right"></i>
+              <a href="/2017/02/10/Get-Started-with-Hexo/" rel="prev" title="Hello World Hexo">
+                Hello World Hexo <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -622,7 +625,7 @@ xcopy %DEPLOYMENT_SOURCE% %DEPLOYMENT_TARGET% /Y
       <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
-               src="https://68.media.tumblr.com/4d7080b0ccb45bb29bdd3572f10555d3/tumblr_oijnwmyioT1w16ewao1_r2_400.jpg"
+               src="/images/jiaqi.jpg"
                alt="Jiaqi Zhou" />
           <p class="site-author-name" itemprop="name">Jiaqi Zhou</p>
            
@@ -634,7 +637,7 @@ xcopy %DEPLOYMENT_SOURCE% %DEPLOYMENT_TARGET% /Y
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -652,7 +655,7 @@ xcopy %DEPLOYMENT_SOURCE% %DEPLOYMENT_TARGET% /Y
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-count">10</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>
@@ -660,6 +663,13 @@ xcopy %DEPLOYMENT_SOURCE% %DEPLOYMENT_TARGET% /Y
 
         </nav>
 
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
         
 
         <div class="links-of-author motion-element">
@@ -677,7 +687,7 @@ xcopy %DEPLOYMENT_SOURCE% %DEPLOYMENT_TARGET% /Y
               <span class="links-of-author-item">
                 <a href="https://www.linkedin.com/in/jiaqi-zhou-001b1ab1/" target="_blank" title="Linkedin">
                   
-                    <i class="fa fa-fw fa-links"></i>
+                    <i class="fa fa-fw fa-envelope"></i>
                   
                   Linkedin
                 </a>
@@ -745,7 +755,7 @@ xcopy %DEPLOYMENT_SOURCE% %DEPLOYMENT_TARGET% /Y
 <div class="theme-info">
   Theme -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Mist
+    NexT.Pisces
   </a>
 </div>
 
@@ -816,6 +826,13 @@ xcopy %DEPLOYMENT_SOURCE% %DEPLOYMENT_TARGET% /Y
 
   
   
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
 
   
   <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>

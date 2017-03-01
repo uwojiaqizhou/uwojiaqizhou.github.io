@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next mist use-motion" lang="en">
+<html class="theme-next pisces use-motion" lang="en">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -77,6 +77,8 @@
 
 
 
+  <link rel="alternate" href="/atom.xml" title="Jiaqi Zhou" type="application/atom+xml" />
+
 
 
 
@@ -103,7 +105,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Mist',
+    scheme: 'Pisces',
     sidebar: {"position":"left","display":"always","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
     fancybox: true,
     motion: true,
@@ -275,7 +277,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Jiaqi Zhou">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://68.media.tumblr.com/4d7080b0ccb45bb29bdd3572f10555d3/tumblr_oijnwmyioT1w16ewao1_r2_400.jpg">
+      <meta itemprop="image" content="/images/jiaqi.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -368,30 +370,16 @@
 
       
         
-          
-            <div class="history-article">本文原始地址在 <a href="http://www.cnblogs.com/hustskyking/archive/2013/04/22/make-a-tree.html" target="_blank">博客园</a>.</div>
+          <div class="history-article">本文原始地址在 <a href="http://www.cnblogs.com/hustskyking/archive/2013/04/22/make-a-tree.html" target="_blank">博客园</a>.</div>
 
-<p>在使用frameset布局的时候，经常会用到目录树，我们可以把一棵树写死，但是更多的情况是，这棵树需要随时被改动，所以我们期望的是他能够被动态的构建。</p><br><p>MVC，算是了解一点，那本文就把这棵树根据M-V-C给拆开分解吧。</p><br><p><img src="http://images.cnitblog.com/blog/387325/201304/22110251-818c9f213e1241cf8c88b5a769638ede.png" alt=""></p><br><p><a title="DEMO" href="http://qianduannotes.sinaapp.com/test/tree.html" target="_blank">点击链接demo→</a></p><br><p>下面就来看看这棵树是怎么构建的。　</p><br><p>　</p><br><h3>Module [数据层]</h3><br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">var tree = &#123;</div><div class="line">            &quot;id&quot;: 0,</div><div class="line">            &quot;a1&quot;: &#123;</div><div class="line">                &quot;id&quot;: 1,</div><div class="line">                &quot;name&quot;: &quot;a1&quot;,</div><div class="line">                &quot;children&quot;: &#123;</div><div class="line">                    &quot;b1&quot;: &quot;b1_1&quot;,</div><div class="line">                    &quot;b2&quot;: &quot;b1_2&quot;,</div><div class="line">                    &quot;b3&quot;: &quot;b1_3&quot;</div><div class="line">                &#125;</div><div class="line">            &#125;,</div><div class="line">            &quot;a2&quot;: &#123;</div><div class="line">                &quot;id&quot;: 1,</div><div class="line">                &quot;name&quot;: &quot;a2&quot;,</div><div class="line">                &quot;children&quot;: &#123;&#125;</div><div class="line">            &#125;,</div><div class="line">            &quot;a3&quot;: &#123;</div><div class="line">                &quot;id&quot;: 1,</div><div class="line">                &quot;name&quot;: &quot;a3&quot;,</div><div class="line">                &quot;children&quot;: &#123;</div><div class="line">                    &quot;b1&quot;: &quot;b3_1&quot;,</div><div class="line">                    &quot;b2&quot;: &quot;b3_2&quot;,</div><div class="line">                    &quot;b3&quot;: &quot;b3_3&quot;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;;</div></pre></td></tr></table></figure><br><br><p>这是一颗两层的目录树，用ID来表示层级关系，name来表示改层的名字（也就是节点Text内容吧）。</p>
-
-
-<h3>Control [控制层]</h3>
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div></pre></td><td class="code"><pre><div class="line">var Tree = function ( module )&#123;</div><div class="line">    function createNodeList( obj ) &#123;</div><div class="line">        //创建ul节点和documentFragmeng中间变量</div><div class="line">        var n = document.createElement(&quot;ul&quot;),</div><div class="line">            docfrag = document.createDocumentFragment();</div><div class="line"></div><div class="line">        //判断obj是根节点还是孩子节点</div><div class="line">        if(obj.id == 0) &#123;</div><div class="line">            n.setAttribute(&quot;class&quot;, &quot;tree_0&quot;);</div><div class="line"></div><div class="line">            for(var key in obj) &#123;</div><div class="line">                if(key == &quot;id&quot;) continue;</div><div class="line">                //将节点插入</div><div class="line">                var c = document.createElement(&quot;li&quot;),</div><div class="line">                    span = document.createElement(&quot;span&quot;);</div><div class="line">                span.appendChild(document.createTextNode( obj[key].name ));</div><div class="line">                c.appendChild(span);</div><div class="line">                docfrag.appendChild( c );</div><div class="line">            &#125;</div><div class="line">        &#125;else if(obj.id &amp;&amp; obj.id == 1) &#123;</div><div class="line">            n.setAttribute(&quot;class&quot;, &quot;tree_1&quot;);</div><div class="line"></div><div class="line">            for(var key in obj) &#123;</div><div class="line">                if(key == &quot;id&quot; || key == &quot;name&quot; || !obj.children) continue;</div><div class="line">                for( var item in obj.children)&#123;</div><div class="line">                    //将节点插入</div><div class="line">                    var c = document.createElement(&quot;li&quot;);</div><div class="line">                    c.appendChild(document.createTextNode( obj.children[item] ));</div><div class="line">                    docfrag.appendChild( c );</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        n.appendChild( docfrag );</div><div class="line">        //返回开始构建的ul节点</div><div class="line">        return n;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    //隐藏及显示 工具函数</div><div class="line">    function toggle(c)&#123;</div><div class="line">        c.style.display = ((c.style.display == &quot;none&quot;) ? &quot;&quot; : &quot;none&quot;);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    function createTree( obj ) &#123;</div><div class="line">        var root, child, count = 0;</div><div class="line"></div><div class="line">        root = createNodeList( obj );</div><div class="line">        for(var key in obj)&#123;</div><div class="line">            if(obj[key] == &quot;id&quot; || !obj[key].children) continue;</div><div class="line">            child = createNodeList(obj[key]);</div><div class="line">            root.children[count].appendChild( child );</div><div class="line">            //count来判断插入的位置</div><div class="line">            count++;</div><div class="line">        &#125;</div><div class="line">        return root;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    var T = createTree(module);</div><div class="line">    var list = T.children;</div><div class="line">    for(var i = 0, len = list.length; i &lt; len; i++)&#123;</div><div class="line">        list[i].getElementsByTagName(&quot;span&quot;)[0].onclick = function()&#123;</div><div class="line">            var obj = this.nextSibling;</div><div class="line">            toggle(obj);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    return T;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>这里边创建了三个函数，其中</p>
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">createNodeList() //适用于构建一个树子节点</div></pre></td></tr></table></figure>
-<p>其中使用documentFragment作为一个节点缓存器，先把节点放置到documentFragment中，然后统一插入到ul，这也是比较常用的使用方式。</p>
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">createTree() //构建一棵树</div></pre></td></tr></table></figure>
-<p>基本整棵树的构建就是分为这两步，前者负责创建一个子节点，后者构建一棵树。</p><br><p>在这颗树中绑定了click事件，让其可以折叠，当然也可以在Tree这个类里绑定更多的方法，这个就靠自己发挥了。</p>
-
-
-<h3>View [视图层]</h3>
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">window.onload = function()&#123;</div><div class="line">    var T = new Tree(tree);</div><div class="line">    document.getElementsByTagName(&quot;body&quot;)[0].appendChild(T);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>整棵树的构建，主要用到的是DOM元素的处理，这个必须牢牢掌握！</p>
-
-          
+<p>在使用frameset布局的时候，经常会用到目录树，我们可以把一棵树写死，但是更多的情况是，这棵树需要随时被改动，所以我们期望的是他能够被动态的构建。</p><br><p>MVC，算是了解一点，那本文就把这棵树根据M-V-C给拆开分解吧。</p><br><p><img src="http://images.cnitblog.com/blog/387325/201304/22110251-818c9f213e1241cf8c88b5a769638ede.png" alt=""></p><br><p><a title="DEMO" href="http://qianduannotes.sinaapp.com/test/tree.html" target="_blank">点击链接demo→</a></p><br><p>下面就来看看这棵树是怎么构建的。　</p><br><p>　</p><br><h3>Module [数据层]</h3><br><br>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/02/28/cb-make-a-tree/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -435,7 +423,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Jiaqi Zhou">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://68.media.tumblr.com/4d7080b0ccb45bb29bdd3572f10555d3/tumblr_oijnwmyioT1w16ewao1_r2_400.jpg">
+      <meta itemprop="image" content="/images/jiaqi.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -528,8 +516,7 @@
 
       
         
-          
-            <div class="history-article">本文原始地址在 <a href="http://www.cnblogs.com/hustskyking/archive/2012/09/16/3049805.html" target="_blank">博客园</a>.</div>
+          <div class="history-article">本文原始地址在 <a href="http://www.cnblogs.com/hustskyking/archive/2012/09/16/3049805.html" target="_blank">博客园</a>.</div>
 
 <p><span><strong>ajax请求管理&mdash;&mdash;</strong>问题提出</span></p>
 
@@ -538,20 +525,13 @@
 
 
 <p><span>&nbsp;&nbsp;&nbsp; 如果客户端向服务器发送请求过于频繁，服务器将会陷入对来自多个用户的大量请求的处理中。进而，客户端在等待服务器返回大量的响应时就会变得十分迟钝。</span></p>
-
-
-<p><span>&nbsp;&nbsp;&nbsp; <a class="quote_title" title="http1.1" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec5.html#sec5" target="_blank">HTTP1.1规范</a>中规定一个客户端在同一时刻与同一个域名不能有两个以上的链接。虽然有一些方法能够突破这个限制（诸如使用子域名来处理某些请求），但绝大多数浏览器在同一时刻能够发起的链接也是有限的。</span></p>
-
-
-<p><span>&nbsp;&nbsp;&nbsp; 当使用XHR时，这个限制将在后台进行处理：你只是根据自己的需求来启动请求，而浏览器在打开连接时将把他们放到队列中逐步发送。当请求比较少或者间隔比较长时，这种工作机制是能够满足需求的；但当在不同时刻，应用程序的各个部分都将发送请求时，这种内建的队列机制就无法提供足够的控制，无法确定请求将在何时发送，哪个请求先发送等。</span></p>
-
-
-<p><span>&nbsp;&nbsp;&nbsp; 幸好，实现一个能够处理更复杂通信模式的自定义请求管理器并不难~</span></p>
-
-
-<p><span>&nbsp;&nbsp;&nbsp; 待续……</span></p>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/02/28/ajax-request-management/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -595,7 +575,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Jiaqi Zhou">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://68.media.tumblr.com/4d7080b0ccb45bb29bdd3572f10555d3/tumblr_oijnwmyioT1w16ewao1_r2_400.jpg">
+      <meta itemprop="image" content="/images/jiaqi.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -688,18 +668,15 @@
 
       
         
-          
-            <p>When you have a Windows Azure Web Site, it is possible to access its files via FTP. This includes both the files that are deployed, and the repository and deployment related files.</p>
-<p>To connect via FTP, you need the following information:</p>
-<ul>
-<li><strong>The FTP host name</strong>, which will be something like waws-prod-blu-001.ftp.azurewebsites.windows.net (the ‘blu’ token might instead be ‘am2’ or ‘db3’ based on location). You’ll find it under the Dashboard tab for your site in the Azure portal.</li>
-<li><strong>Your username</strong>: you’ll also find it on the dashboard, under Deployment User. It’s the same as your git username, but prefixed with the site name. **Don’t forget the site name part, or it won’t work!</li>
-<li><strong>Your password</strong>: use the same password as when you ‘git push’</li>
-</ul>
-<p>You can use whatever FTP client you like, but you can’t go wrong if you go with <a href="http://filezilla-project.org/" target="_blank" rel="external">FileZilla</a>. Note that the Windows Explorer FTP support has a tendency to do over-aggressive caching, which can yield unexpected results.</p>
-<p>Once you’ve FTP’d, check out [[File structure on Azure]] to navigate through the files.</p>
-
-          
+          <p>When you have a Windows Azure Web Site, it is possible to access its files via FTP. This includes both the files that are deployed, and the repository and deployment related files.</p>
+<p>To connect via FTP, you need the following information:<br>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/02/28/Accessing-files-via-ftp/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -738,12 +715,12 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/02/27/article/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/02/26/Analyzing-a-git-client-trace/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Jiaqi Zhou">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://68.media.tumblr.com/4d7080b0ccb45bb29bdd3572f10555d3/tumblr_oijnwmyioT1w16ewao1_r2_400.jpg">
+      <meta itemprop="image" content="/images/jiaqi.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -760,8 +737,8 @@
             
               
                 
-                <a class="post-title-link" href="/2017/02/27/article/" itemprop="url">
-                  article
+                <a class="post-title-link" href="/2017/02/26/Analyzing-a-git-client-trace/" itemprop="url">
+                  Analyzing a git client trace
                 </a>
               
             
@@ -777,8 +754,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-27T22:41:26-05:00">
-                2017-02-27
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-26T12:56:23-05:00">
+                2017-02-26
               </time>
             
 
@@ -787,6 +764,28 @@
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/KuduDevSetup/" itemprop="url" rel="index">
+                    <span itemprop="name">KuduDevSetup</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -814,10 +813,28 @@
 
       
         
-          
-            <p>my first blog article.</p>
-
-          
+          <p>After enabling the git trace ([[Investigating issues]]) and performing a git clone or push, you should see something like this:</p>
+<pre><code>trace: built-in: git &apos;push&apos; &apos;http://dfowler-nb.redmond.corp.microsoft.com:35954/NuGet199c8e.git&apos; &apos;master&apos;
+trace: run_command: &apos;git-remote-http&apos; &apos;http://dfowler-nb.redmond.corp.microsoft.com:35954/NuGet199c8e.git&apos; &apos;http://dfowler-nb.redmond.corp.microsoft.com:35954/NuGet199c8e.git&apos;
+trace: run_command: &apos;send-pack&apos; &apos;--stateless-rpc&apos; &apos;--helper-status&apos; &apos;--thin&apos; &apos;http://dfowler-nb.redmond.corp.microsoft.com:35954/NuGet199c8e.git/&apos; &apos;refs/heads/master:refs/heads/master&apos;
+* Couldn&apos;t find host dfowler-nb.redmond.corp.microsoft.com in the _netrc file; using defaults
+* About to connect() to dfowler-nb.redmond.corp.microsoft.com port 35954 (#0)
+*   Trying 10.80.181.12... * connected
+* Connected to dfowler-nb.redmond.corp.microsoft.com (10.80.181.12) port 35954 (#0)
+* 0x1f8ce40 is at send pipe head!
+&gt; GET /NuGet199c8e.git/info/refs?service=git-receive-pack HTTP/1.1
+User-Agent: git/1.7.7.msysgit.0.5.ge59f1
+Host: dfowler-nb.redmond.corp.microsoft.com:35954
+Accept: */*
+Pragma: no-cache
+</code></pre>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/02/26/Analyzing-a-git-client-trace/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -856,12 +873,12 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/02/27/Get-Started-with-Hexo/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/02/21/Running-tests/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Jiaqi Zhou">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://68.media.tumblr.com/4d7080b0ccb45bb29bdd3572f10555d3/tumblr_oijnwmyioT1w16ewao1_r2_400.jpg">
+      <meta itemprop="image" content="/images/jiaqi.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -878,8 +895,8 @@
             
               
                 
-                <a class="post-title-link" href="/2017/02/27/Get-Started-with-Hexo/" itemprop="url">
-                  Hello World
+                <a class="post-title-link" href="/2017/02/21/Running-tests/" itemprop="url">
+                  running tests
                 </a>
               
             
@@ -895,8 +912,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-27T20:47:04-05:00">
-                2017-02-27
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-21T22:56:23-05:00">
+                2017-02-21
               </time>
             
 
@@ -905,6 +922,28 @@
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/KuduDevSetup/" itemprop="url" rel="index">
+                    <span itemprop="name">KuduDevSetup</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -932,18 +971,16 @@
 
       
         
-          
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
-          
+          <p>First, make sure you look at the [[Getting started]] page for the list of prerequisites, including those under <code>Additional prerequisites to run the functional tests</code>.</p>
+<p>All tests use xunit; this includes the unit tests and functional tests.</p>
+<h2 id="Unit-tests"><a href="#Unit-tests" class="headerlink" title="Unit tests"></a>Unit tests</h2><p>To run the unit tests just use build.cmd or use the VS 2012 XUnit.net runner (or <a href="http://www.testdriven.net/">Test Driven .NET</a>) to run them. They are in <code>Kudu.Core.Test</code>.<br>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/02/21/Running-tests/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1010,7 +1047,7 @@
       <section class="site-overview sidebar-panel sidebar-panel-active">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
-               src="https://68.media.tumblr.com/4d7080b0ccb45bb29bdd3572f10555d3/tumblr_oijnwmyioT1w16ewao1_r2_400.jpg"
+               src="/images/jiaqi.jpg"
                alt="Jiaqi Zhou" />
           <p class="site-author-name" itemprop="name">Jiaqi Zhou</p>
            
@@ -1022,7 +1059,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -1040,7 +1077,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-count">10</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>
@@ -1048,6 +1085,13 @@
 
         </nav>
 
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
         
 
         <div class="links-of-author motion-element">
@@ -1065,7 +1109,7 @@
               <span class="links-of-author-item">
                 <a href="https://www.linkedin.com/in/jiaqi-zhou-001b1ab1/" target="_blank" title="Linkedin">
                   
-                    <i class="fa fa-fw fa-links"></i>
+                    <i class="fa fa-fw fa-envelope"></i>
                   
                   Linkedin
                 </a>
@@ -1117,7 +1161,7 @@
 <div class="theme-info">
   Theme -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Mist
+    NexT.Pisces
   </a>
 </div>
 
@@ -1188,6 +1232,13 @@
 
   
   
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
 
   
 

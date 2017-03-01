@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next mist use-motion" lang="en">
+<html class="theme-next pisces use-motion" lang="en">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -77,6 +77,8 @@
 
 
 
+  <link rel="alternate" href="/atom.xml" title="Jiaqi Zhou" type="application/atom+xml" />
+
 
 
 
@@ -95,7 +97,7 @@ All tests use xunit; this includes">
 <meta property="og:site_name" content="Jiaqi Zhou">
 <meta property="og:description" content="First, make sure you look at the [[Getting started]] page for the list of prerequisites, including those under Additional prerequisites to run the functional tests.
 All tests use xunit; this includes">
-<meta property="og:updated_time" content="2017-03-01T00:48:07.000Z">
+<meta property="og:updated_time" content="2017-03-01T02:53:49.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="running tests">
 <meta name="twitter:description" content="First, make sure you look at the [[Getting started]] page for the list of prerequisites, including those under Additional prerequisites to run the functional tests.
@@ -107,7 +109,7 @@ All tests use xunit; this includes">
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Mist',
+    scheme: 'Pisces',
     sidebar: {"position":"left","display":"always","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
     fancybox: true,
     motion: true,
@@ -277,7 +279,7 @@ All tests use xunit; this includes">
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Jiaqi Zhou">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://68.media.tumblr.com/4d7080b0ccb45bb29bdd3572f10555d3/tumblr_oijnwmyioT1w16ewao1_r2_400.jpg">
+      <meta itemprop="image" content="/images/jiaqi.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -368,7 +370,7 @@ All tests use xunit; this includes">
       
         <p>First, make sure you look at the [[Getting started]] page for the list of prerequisites, including those under <code>Additional prerequisites to run the functional tests</code>.</p>
 <p>All tests use xunit; this includes the unit tests and functional tests.</p>
-<h2 id="Unit-tests"><a href="#Unit-tests" class="headerlink" title="Unit tests"></a>Unit tests</h2><p>To run the unit tests just use build.cmd or use the VS 2012 XUnit.net runner (or <a href="http://www.testdriven.net/" target="_blank" rel="external">Test Driven .NET</a>) to run them. They are in <code>Kudu.Core.Test</code>.</p>
+<h2 id="Unit-tests"><a href="#Unit-tests" class="headerlink" title="Unit tests"></a>Unit tests</h2><p>To run the unit tests just use build.cmd or use the VS 2012 XUnit.net runner (or <a href="http://www.testdriven.net/" target="_blank" rel="external">Test Driven .NET</a>) to run them. They are in <code>Kudu.Core.Test</code>.<br><a id="more"></a></p>
 <h2 id="Functional-tests"><a href="#Functional-tests" class="headerlink" title="Functional tests"></a>Functional tests</h2><p>The functional tests are located in the <code>Kudu.FunctionalTests</code> project. Running them requires the following software to be installed.</p>
 <p>The functional tests take about 10 minutes to run.</p>
 <p>Note that all tests end up reusing the same IIS application to avoid creating a new one for each. By default, it’s called <code>TestRunnerSite</code>. You can configure that under <code>Kudu.FunctionalTests\App.config</code>.</p>
@@ -412,8 +414,8 @@ All tests use xunit; this includes">
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/01/26/Custom-Deployment-Script/" rel="next" title="Custom deploymenet">
-                <i class="fa fa-chevron-left"></i> Custom deploymenet
+              <a href="/2017/02/10/Get-Started-with-Hexo/" rel="next" title="Hello World Hexo">
+                <i class="fa fa-chevron-left"></i> Hello World Hexo
               </a>
             
           </div>
@@ -484,7 +486,7 @@ All tests use xunit; this includes">
       <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
-               src="https://68.media.tumblr.com/4d7080b0ccb45bb29bdd3572f10555d3/tumblr_oijnwmyioT1w16ewao1_r2_400.jpg"
+               src="/images/jiaqi.jpg"
                alt="Jiaqi Zhou" />
           <p class="site-author-name" itemprop="name">Jiaqi Zhou</p>
            
@@ -496,7 +498,7 @@ All tests use xunit; this includes">
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -514,7 +516,7 @@ All tests use xunit; this includes">
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-count">10</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>
@@ -522,6 +524,13 @@ All tests use xunit; this includes">
 
         </nav>
 
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
         
 
         <div class="links-of-author motion-element">
@@ -539,7 +548,7 @@ All tests use xunit; this includes">
               <span class="links-of-author-item">
                 <a href="https://www.linkedin.com/in/jiaqi-zhou-001b1ab1/" target="_blank" title="Linkedin">
                   
-                    <i class="fa fa-fw fa-links"></i>
+                    <i class="fa fa-fw fa-envelope"></i>
                   
                   Linkedin
                 </a>
@@ -607,7 +616,7 @@ All tests use xunit; this includes">
 <div class="theme-info">
   Theme -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Mist
+    NexT.Pisces
   </a>
 </div>
 
@@ -678,6 +687,13 @@ All tests use xunit; this includes">
 
   
   
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
 
   
   <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
