@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Jiaqi Zhou, Web, Html, CSS, JS, Java, Git" />
+  <meta name="keywords" content="git,kudu,test," />
 
 
 
@@ -87,15 +87,19 @@
 
 
 
-<meta name="description" content="This is my web studio.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Jiaqi Zhou">
-<meta property="og:url" content="http://yoursite.com/archives/2017/index.html">
+<meta name="description" content="First, make sure you look at the [[Getting started]] page for the list of prerequisites, including those under Additional prerequisites to run the functional tests.
+All tests use xunit; this includes">
+<meta property="og:type" content="article">
+<meta property="og:title" content="running tests">
+<meta property="og:url" content="http://yoursite.com/2017/02/21/Running-tests/index.html">
 <meta property="og:site_name" content="Jiaqi Zhou">
-<meta property="og:description" content="This is my web studio.">
+<meta property="og:description" content="First, make sure you look at the [[Getting started]] page for the list of prerequisites, including those under Additional prerequisites to run the functional tests.
+All tests use xunit; this includes">
+<meta property="og:updated_time" content="2017-03-01T00:48:07.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Jiaqi Zhou">
-<meta name="twitter:description" content="This is my web studio.">
+<meta name="twitter:title" content="running tests">
+<meta name="twitter:description" content="First, make sure you look at the [[Getting started]] page for the list of prerequisites, including those under Additional prerequisites to run the functional tests.
+All tests use xunit; this includes">
 
 
 
@@ -123,13 +127,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/archives/2017/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/02/21/Running-tests/"/>
 
 
 
 
 
-  <title> Archive | Jiaqi Zhou </title>
+  <title> running tests | Jiaqi Zhou </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
@@ -154,7 +158,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left  page-archive  ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -258,218 +262,185 @@
           <div id="content" class="content">
             
 
-  <section id="posts" class="posts-collapse">
-    <span class="archive-move-on"></span>
+  <div id="posts" class="posts-expand">
+    
 
-    <span class="archive-page-counter">
-      
-      
-      
-        
-      
-      Um..! 10 posts in total. Keep on posting.
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/02/21/Running-tests/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jiaqi Zhou">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://68.media.tumblr.com/4d7080b0ccb45bb29bdd3572f10555d3/tumblr_oijnwmyioT1w16ewao1_r2_400.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Jiaqi Zhou">
     </span>
 
     
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                running tests
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-21T22:56:23-05:00">
+                2017-02-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/KuduDevSetup/" itemprop="url" rel="index">
+                    <span itemprop="name">KuduDevSetup</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
 
       
       
-      
 
+      
+        <p>First, make sure you look at the [[Getting started]] page for the list of prerequisites, including those under <code>Additional prerequisites to run the functional tests</code>.</p>
+<p>All tests use xunit; this includes the unit tests and functional tests.</p>
+<h2 id="Unit-tests"><a href="#Unit-tests" class="headerlink" title="Unit tests"></a>Unit tests</h2><p>To run the unit tests just use build.cmd or use the VS 2012 XUnit.net runner (or <a href="http://www.testdriven.net/" target="_blank" rel="external">Test Driven .NET</a>) to run them. They are in <code>Kudu.Core.Test</code>.</p>
+<h2 id="Functional-tests"><a href="#Functional-tests" class="headerlink" title="Functional tests"></a>Functional tests</h2><p>The functional tests are located in the <code>Kudu.FunctionalTests</code> project. Running them requires the following software to be installed.</p>
+<p>The functional tests take about 10 minutes to run.</p>
+<p>Note that all tests end up reusing the same IIS application to avoid creating a new one for each. By default, it’s called <code>TestRunnerSite</code>. You can configure that under <code>Kudu.FunctionalTests\App.config</code>.</p>
+
+      
+    </div>
+
+    <div>
       
         
-        <div class="collection-title">
-          <h2 class="archive-year motion-element" id="archive-year-2017">2017</h2>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/git/" rel="tag"># git</a>
+          
+            <a href="/tags/kudu/" rel="tag"># kudu</a>
+          
+            <a href="/tags/test/" rel="tag"># test</a>
+          
         </div>
       
+
+      
+        
       
 
       
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/01/26/Custom-Deployment-Script/" rel="next" title="Custom deploymenet">
+                <i class="fa fa-chevron-left"></i> Custom deploymenet
+              </a>
+            
+          </div>
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+          <span class="post-nav-divider"></span>
 
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2017/02/28/cb-make-a-tree/" itemprop="url">
-              
-                <span itemprop="name">cb make a tree</span>
-              
-            </a>
-        
-      </h1>
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/02/26/Analyzing-a-git-client-trace/" rel="prev" title="Analyzing a git client trace">
+                Analyzing a git client trace <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-02-28T20:12:41-05:00"
-              content="2017-02-28" >
-          02-28
-        </time>
-      </div>
-
-    </header>
+      
+      
+    </footer>
   </article>
 
 
 
-    
-
+    <div class="post-spread">
       
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2017/02/28/ajax-request-management/" itemprop="url">
-              
-                <span itemprop="name">ajax request management</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-02-28T19:57:56-05:00"
-              content="2017-02-28" >
-          02-28
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2017/02/28/Accessing-files-via-ftp/" itemprop="url">
-              
-                <span itemprop="name">Accessing files via ftp</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-02-28T17:37:14-05:00"
-              content="2017-02-28" >
-          02-28
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2017/02/27/article/" itemprop="url">
-              
-                <span itemprop="name">article</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-02-27T22:41:26-05:00"
-              content="2017-02-27" >
-          02-27
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2017/02/27/Get-Started-with-Hexo/" itemprop="url">
-              
-                <span itemprop="name">Hello World</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-02-27T20:47:04-05:00"
-              content="2017-02-27" >
-          02-27
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-  </section>
-
-  
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/archives/2017/page/2/">2</a><a class="extend next" rel="next" href="/archives/2017/page/2/"><i class="fa fa-angle-right"></i></a>
-  </nav>
-
-
+    </div>
+  </div>
 
           
           </div>
@@ -477,6 +448,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -496,8 +471,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="https://68.media.tumblr.com/4d7080b0ccb45bb29bdd3572f10555d3/tumblr_oijnwmyioT1w16ewao1_r2_400.jpg"
@@ -575,6 +559,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Unit-tests"><span class="nav-number">1.</span> <span class="nav-text">Unit tests</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Functional-tests"><span class="nav-number">2.</span> <span class="nav-text">Functional tests</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -680,11 +680,9 @@
   
 
   
-  
-    <script type="text/javascript" id="motion.page.archive">
-      $('.archive-year').velocity('transition.slideLeftIn');
-    </script>
-  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
 
 
   

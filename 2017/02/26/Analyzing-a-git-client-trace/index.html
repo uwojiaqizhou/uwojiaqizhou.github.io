@@ -1,0 +1,829 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="git,remote http," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="After enabling the git trace ([[Investigating issues]]) and performing a git clone or push, you should see something like this:
+trace: built-in: git &amp;apos;push&amp;apos; &amp;apos;http://dfowler-nb.redmond.co">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Analyzing a git client trace">
+<meta property="og:url" content="http://yoursite.com/2017/02/26/Analyzing-a-git-client-trace/index.html">
+<meta property="og:site_name" content="Jiaqi Zhou">
+<meta property="og:description" content="After enabling the git trace ([[Investigating issues]]) and performing a git clone or push, you should see something like this:
+trace: built-in: git &amp;apos;push&amp;apos; &amp;apos;http://dfowler-nb.redmond.co">
+<meta property="og:updated_time" content="2017-03-01T00:45:33.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Analyzing a git client trace">
+<meta name="twitter:description" content="After enabling the git trace ([[Investigating issues]]) and performing a git clone or push, you should see something like this:
+trace: built-in: git &amp;apos;push&amp;apos; &amp;apos;http://dfowler-nb.redmond.co">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"always","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/02/26/Analyzing-a-git-client-trace/"/>
+
+
+
+
+
+  <title> Analyzing a git client trace | Jiaqi Zhou </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta custom-logo">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Jiaqi Zhou</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Web developer</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/02/26/Analyzing-a-git-client-trace/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jiaqi Zhou">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://68.media.tumblr.com/4d7080b0ccb45bb29bdd3572f10555d3/tumblr_oijnwmyioT1w16ewao1_r2_400.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Jiaqi Zhou">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Analyzing a git client trace
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-26T12:56:23-05:00">
+                2017-02-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/KuduDevSetup/" itemprop="url" rel="index">
+                    <span itemprop="name">KuduDevSetup</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>After enabling the git trace ([[Investigating issues]]) and performing a git clone or push, you should see something like this:</p>
+<pre><code>trace: built-in: git &apos;push&apos; &apos;http://dfowler-nb.redmond.corp.microsoft.com:35954/NuGet199c8e.git&apos; &apos;master&apos;
+trace: run_command: &apos;git-remote-http&apos; &apos;http://dfowler-nb.redmond.corp.microsoft.com:35954/NuGet199c8e.git&apos; &apos;http://dfowler-nb.redmond.corp.microsoft.com:35954/NuGet199c8e.git&apos;
+trace: run_command: &apos;send-pack&apos; &apos;--stateless-rpc&apos; &apos;--helper-status&apos; &apos;--thin&apos; &apos;http://dfowler-nb.redmond.corp.microsoft.com:35954/NuGet199c8e.git/&apos; &apos;refs/heads/master:refs/heads/master&apos;
+* Couldn&apos;t find host dfowler-nb.redmond.corp.microsoft.com in the _netrc file; using defaults
+* About to connect() to dfowler-nb.redmond.corp.microsoft.com port 35954 (#0)
+*   Trying 10.80.181.12... * connected
+* Connected to dfowler-nb.redmond.corp.microsoft.com (10.80.181.12) port 35954 (#0)
+* 0x1f8ce40 is at send pipe head!
+&gt; GET /NuGet199c8e.git/info/refs?service=git-receive-pack HTTP/1.1
+User-Agent: git/1.7.7.msysgit.0.5.ge59f1
+Host: dfowler-nb.redmond.corp.microsoft.com:35954
+Accept: */*
+Pragma: no-cache
+
+&lt; HTTP/1.1 200 OK
+&lt; Cache-Control: must-revalidate, no-cache, max-age=0
+&lt; Pragma: no-cache
+&lt; Transfer-Encoding: chunked
+&lt; Content-Type: application/x-git-receive-pack-advertisement
+&lt; Expires: Tue, 01 Jan 1980 00:00:00 GMT
+&lt; Server: Microsoft-IIS/7.5
+&lt; X-AspNet-Version: 4.0.30319
+&lt; X-Powered-By: ASP.NET
+&lt; Date: Tue, 24 Apr 2012 01:11:05 GMT
+&lt;
+* Connection #0 to host dfowler-nb.redmond.corp.microsoft.com left intact
+trace: built-in: git &apos;send-pack&apos; &apos;--stateless-rpc&apos; &apos;--helper-status&apos; &apos;--thin&apos; &apos;http://dfowler-nb.redmond.corp.microsoft.com:35954/NuGet199c8e.git/&apos; &apos;refs/heads/master:refs/heads/master&apos;
+trace: run_command: &apos;pack-objects&apos; &apos;--all-progress-implied&apos; &apos;--revs&apos; &apos;--stdout&apos; &apos;--thin&apos; &apos;--delta-base-offset&apos;
+trace: built-in: git &apos;pack-objects&apos; &apos;--all-progress-implied&apos; &apos;--revs&apos; &apos;--stdout&apos; &apos;--thin&apos; &apos;--delta-base-offset&apos;
+remote: New deployment received.[K
+remote: Updating branch &apos;master&apos;.[K
+remote: Preparing deployment for commit id &apos;1d120b515b&apos;.[K
+remote: Building web project &apos;MvcAppWithNuGet19.csproj&apos;.[K
+remote: C:\dev\github\kudu\Kudu.FunctionalTests\bin\Debug\apps\NuGet199c8e\live\repository\.nuget\nuget.targets(58,9): error : Package restore is disabled by default. To give consent, open the Visual Studio Options dialog, click on Package Manager node and check &apos;Allow NuGet to download missing packages during build.&apos; You can also give consent by setting the environment variable &apos;EnableNuGetPackageRestore&apos; to &apos;true&apos;. [C:\dev\github\kudu\Kudu.FunctionalTests\bin\Debug\apps\NuGet199c8e\live\repository\MvcAppWithNuGet19\MvcAppWithNuGet19.csproj][K
+remote: C:\dev\github\kudu\Kudu.FunctionalTests\bin\Debug\apps\NuGet199c8e\live\repository\.nuget\nuget.targets(58,9): error MSB3073: The command &quot;&quot;C:\dev\github\kudu\Kudu.FunctionalTests\bin\Debug\apps\NuGet199c8e\live\repository\.nuget\nuget.exe&quot; install &quot;C:\dev\github\kudu\Kudu.FunctionalTests\bin\Debug\apps\NuGet199c8e\live\repository\MvcAppWithNuGet19\packages.config&quot; -source &quot;&quot; -o &quot;C:\dev\github\kudu\Kudu.FunctionalTests\bin\Debug\apps\NuGet199c8e\live\repository\packages&quot;&quot; exited with code 1. [C:\dev\github\kudu\Kudu.FunctionalTests\bin\Debug\apps\NuGet199c8e\live\repository\MvcAppWithNuGet19\MvcAppWithNuGet19.csproj][K
+remote:
+remote: Error - Changes committed to remote repository but your website not updated.[K
+* Couldn&apos;t find host dfowler-nb.redmond.corp.microsoft.com in the _netrc file; using defaults
+* About to connect() to dfowler-nb.redmond.corp.microsoft.com port 35954 (#0)
+*   Trying 10.80.181.12... * connected
+* Connected to dfowler-nb.redmond.corp.microsoft.com (10.80.181.12) port 35954 (#0)
+&gt; POST /NuGet199c8e.git/git-receive-pack HTTP/1.1
+User-Agent: git/1.7.7.msysgit.0.5.ge59f1
+Host: dfowler-nb.redmond.corp.microsoft.com:35954
+Accept-Encoding: deflate, gzip
+Content-Type: application/x-git-receive-pack-request
+Accept: application/x-git-receive-pack-result
+Content-Length: 823407
+
+&lt; HTTP/1.1 200 OK
+&lt; Cache-Control: no-cache, max-age=0, must-revalidate
+&lt; Pragma: no-cache
+&lt; Transfer-Encoding: chunked
+&lt; Content-Type: application/x-git-receive-pack-result
+&lt; Expires: Fri, 01 Jan 1980 00:00:00 GMT
+&lt; Server: Microsoft-IIS/7.5
+&lt; X-AspNet-Version: 4.0.30319
+&lt; X-Powered-By: ASP.NET
+&lt; Date: Tue, 24 Apr 2012 01:11:05 GMT
+&lt;
+* Connection #0 to host dfowler-nb.redmond.corp.microsoft.com left intact
+* Closing connection #0
+To http://dfowler-nb.redmond.corp.microsoft.com:35954/NuGet199c8e.git
+ * [new branch]      master -&gt; master
+</code></pre><p>It’s alot of noise but the only thing you need to know is how to read requests and responses:</p>
+<p> “&gt;” denotes a request and “&lt;” denotes a response:</p>
+<pre><code>&gt; GET /NuGet199c8e.git/info/refs?service=git-receive-pack HTTP/1.1
+    User-Agent: git/1.7.7.msysgit.0.5.ge59f1
+    Host: dfowler-nb.redmond.corp.microsoft.com:35954
+    Accept: */*
+    Pragma: no-cache
+
+    &lt; HTTP/1.1 200 OK
+    &lt; Cache-Control: must-revalidate, no-cache, max-age=0
+    &lt; Pragma: no-cache
+    &lt; Transfer-Encoding: chunked
+    &lt; Content-Type: application/x-git-receive-pack-advertisement
+    &lt; Expires: Tue, 01 Jan 1980 00:00:00 GMT
+    &lt; Server: Microsoft-IIS/7.5
+    &lt; X-AspNet-Version: 4.0.30319
+    &lt; X-Powered-By: ASP.NET
+    &lt; Date: Tue, 24 Apr 2012 01:11:05 GMT
+    &lt;
+</code></pre><p>See [[Anatomy of a git request]] for more details.</p>
+<h2 id="Git-errors"><a href="#Git-errors" class="headerlink" title="Git errors"></a>Git errors</h2><h3 id="Error-in-sideband-demultiplexer"><a href="#Error-in-sideband-demultiplexer" class="headerlink" title="Error in sideband demultiplexer"></a>Error in sideband demultiplexer</h3><pre><code>fatal: The remote end hung up unexpectedly
+error: error in sideband demultiplexer
+</code></pre><p>The most likely cause of this error is a timeout. This can happen when the request becomes idle for deveral minutes (i.e. no response data is sent back).</p>
+<h3 id="bad-line-length-character"><a href="#bad-line-length-character" class="headerlink" title="bad line length character"></a>bad line length character</h3><p>If you see the following:</p>
+<pre><code>fatal: protocol error: bad line length character
+</code></pre><p>The timeout above is still relevant but when we try to write to the response, ASP.NET hits a null reference and fails. In the git command line output there will be an error but the operation will still continue on the server.</p>
+<h3 id="Did-you-run-git-update-server-info-on-the-server"><a href="#Did-you-run-git-update-server-info-on-the-server" class="headerlink" title="Did you run git update-server-info on the server"></a>Did you run git update-server-info on the server</h3><pre><code>fatal: myapp.git/info/refs not found: did you run git update-server-info on the server?
+</code></pre><ol>
+<li>Make sure you’re using the right url.</li>
+<li>Do you see a 404?</li>
+</ol>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/git/" rel="tag"># git</a>
+          
+            <a href="/tags/remote-http/" rel="tag"># remote http</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/02/21/Running-tests/" rel="next" title="running tests">
+                <i class="fa fa-chevron-left"></i> running tests
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/02/27/Get-Started-with-Hexo/" rel="prev" title="Hello World">
+                Hello World <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="https://68.media.tumblr.com/4d7080b0ccb45bb29bdd3572f10555d3/tumblr_oijnwmyioT1w16ewao1_r2_400.jpg"
+               alt="Jiaqi Zhou" />
+          <p class="site-author-name" itemprop="name">Jiaqi Zhou</p>
+           
+              <p class="site-description motion-element" itemprop="description">This is my web studio.</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/uwojiaqizhou" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.linkedin.com/in/jiaqi-zhou-001b1ab1/" target="_blank" title="Linkedin">
+                  
+                    <i class="fa fa-fw fa-links"></i>
+                  
+                  Linkedin
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Git-errors"><span class="nav-number">1.</span> <span class="nav-text">Git errors</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Error-in-sideband-demultiplexer"><span class="nav-number">1.1.</span> <span class="nav-text">Error in sideband demultiplexer</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#bad-line-length-character"><span class="nav-number">1.2.</span> <span class="nav-text">bad line length character</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Did-you-run-git-update-server-info-on-the-server"><span class="nav-number">1.3.</span> <span class="nav-text">Did you run git update-server-info on the server</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jiaqi Zhou</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+</body>
+</html>

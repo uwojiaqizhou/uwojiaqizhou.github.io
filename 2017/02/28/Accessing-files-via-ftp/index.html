@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Jiaqi Zhou, Web, Html, CSS, JS, Java, Git" />
+  <meta name="keywords" content="ftp,git," />
 
 
 
@@ -87,15 +87,19 @@
 
 
 
-<meta name="description" content="This is my web studio.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Jiaqi Zhou">
-<meta property="og:url" content="http://yoursite.com/archives/2017/index.html">
+<meta name="description" content="When you have a Windows Azure Web Site, it is possible to access its files via FTP. This includes both the files that are deployed, and the repository and deployment related files.
+To connect via FTP,">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Accessing files via ftp">
+<meta property="og:url" content="http://yoursite.com/2017/02/28/Accessing-files-via-ftp/index.html">
 <meta property="og:site_name" content="Jiaqi Zhou">
-<meta property="og:description" content="This is my web studio.">
+<meta property="og:description" content="When you have a Windows Azure Web Site, it is possible to access its files via FTP. This includes both the files that are deployed, and the repository and deployment related files.
+To connect via FTP,">
+<meta property="og:updated_time" content="2017-03-01T00:38:27.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Jiaqi Zhou">
-<meta name="twitter:description" content="This is my web studio.">
+<meta name="twitter:title" content="Accessing files via ftp">
+<meta name="twitter:description" content="When you have a Windows Azure Web Site, it is possible to access its files via FTP. This includes both the files that are deployed, and the repository and deployment related files.
+To connect via FTP,">
 
 
 
@@ -123,13 +127,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/archives/2017/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/02/28/Accessing-files-via-ftp/"/>
 
 
 
 
 
-  <title> Archive | Jiaqi Zhou </title>
+  <title> Accessing files via ftp | Jiaqi Zhou </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
@@ -154,7 +158,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left  page-archive  ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -258,218 +262,186 @@
           <div id="content" class="content">
             
 
-  <section id="posts" class="posts-collapse">
-    <span class="archive-move-on"></span>
+  <div id="posts" class="posts-expand">
+    
 
-    <span class="archive-page-counter">
-      
-      
-      
-        
-      
-      Um..! 10 posts in total. Keep on posting.
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/02/28/Accessing-files-via-ftp/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jiaqi Zhou">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://68.media.tumblr.com/4d7080b0ccb45bb29bdd3572f10555d3/tumblr_oijnwmyioT1w16ewao1_r2_400.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Jiaqi Zhou">
     </span>
 
     
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Accessing files via ftp
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-28T17:37:14-05:00">
+                2017-02-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ftp/" itemprop="url" rel="index">
+                    <span itemprop="name">ftp</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
 
       
       
-      
 
+      
+        <p>When you have a Windows Azure Web Site, it is possible to access its files via FTP. This includes both the files that are deployed, and the repository and deployment related files.</p>
+<p>To connect via FTP, you need the following information:</p>
+<ul>
+<li><strong>The FTP host name</strong>, which will be something like waws-prod-blu-001.ftp.azurewebsites.windows.net (the ‘blu’ token might instead be ‘am2’ or ‘db3’ based on location). You’ll find it under the Dashboard tab for your site in the Azure portal.</li>
+<li><strong>Your username</strong>: you’ll also find it on the dashboard, under Deployment User. It’s the same as your git username, but prefixed with the site name. **Don’t forget the site name part, or it won’t work!</li>
+<li><strong>Your password</strong>: use the same password as when you ‘git push’</li>
+</ul>
+<p>You can use whatever FTP client you like, but you can’t go wrong if you go with <a href="http://filezilla-project.org/" target="_blank" rel="external">FileZilla</a>. Note that the Windows Explorer FTP support has a tendency to do over-aggressive caching, which can yield unexpected results.</p>
+<p>Once you’ve FTP’d, check out [[File structure on Azure]] to navigate through the files.</p>
+
+      
+    </div>
+
+    <div>
       
         
-        <div class="collection-title">
-          <h2 class="archive-year motion-element" id="archive-year-2017">2017</h2>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/ftp/" rel="tag"># ftp</a>
+          
+            <a href="/tags/git/" rel="tag"># git</a>
+          
         </div>
       
+
+      
+        
       
 
       
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/02/27/article/" rel="next" title="article">
+                <i class="fa fa-chevron-left"></i> article
+              </a>
+            
+          </div>
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+          <span class="post-nav-divider"></span>
 
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2017/02/28/cb-make-a-tree/" itemprop="url">
-              
-                <span itemprop="name">cb make a tree</span>
-              
-            </a>
-        
-      </h1>
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/02/28/ajax-request-management/" rel="prev" title="ajax request management">
+                ajax request management <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-02-28T20:12:41-05:00"
-              content="2017-02-28" >
-          02-28
-        </time>
-      </div>
-
-    </header>
+      
+      
+    </footer>
   </article>
 
 
 
-    
-
+    <div class="post-spread">
       
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2017/02/28/ajax-request-management/" itemprop="url">
-              
-                <span itemprop="name">ajax request management</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-02-28T19:57:56-05:00"
-              content="2017-02-28" >
-          02-28
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2017/02/28/Accessing-files-via-ftp/" itemprop="url">
-              
-                <span itemprop="name">Accessing files via ftp</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-02-28T17:37:14-05:00"
-              content="2017-02-28" >
-          02-28
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2017/02/27/article/" itemprop="url">
-              
-                <span itemprop="name">article</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-02-27T22:41:26-05:00"
-              content="2017-02-27" >
-          02-27
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2017/02/27/Get-Started-with-Hexo/" itemprop="url">
-              
-                <span itemprop="name">Hello World</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-02-27T20:47:04-05:00"
-              content="2017-02-27" >
-          02-27
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-  </section>
-
-  
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/archives/2017/page/2/">2</a><a class="extend next" rel="next" href="/archives/2017/page/2/"><i class="fa fa-angle-right"></i></a>
-  </nav>
-
-
+    </div>
+  </div>
 
           
           </div>
@@ -477,6 +449,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -680,11 +656,9 @@
   
 
   
-  
-    <script type="text/javascript" id="motion.page.archive">
-      $('.archive-year').velocity('transition.slideLeftIn');
-    </script>
-  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
 
 
   
