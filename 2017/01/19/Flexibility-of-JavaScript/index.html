@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next pisces use-motion" lang="en">
+<html class="theme-next mist use-motion" lang="en">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -107,7 +107,7 @@
 
 1234567/*Start and stop animations using functions.*/function startAnination() &amp;#123;    ....&amp;#125;function stopAnination()&amp;#123;    ....&amp;#125;
 这种做法很简单，但是你无法创建可以保存状态并">
-<meta property="og:updated_time" content="2017-03-01T02:20:16.000Z">
+<meta property="og:updated_time" content="2017-03-01T02:59:30.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Flexibility of JavaScript">
 <meta name="twitter:description" content="本文原始地址在 博客园.
@@ -124,8 +124,8 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Pisces',
-    sidebar: {"position":"left","display":"always","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
     fancybox: true,
     motion: true,
     duoshuo: {
@@ -389,9 +389,9 @@
 <p>如果你偏爱过程式编程，你可以这样：</p>
 
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">/*Start and stop animations using functions.*/</div><div class="line">function startAnination() &#123;</div><div class="line">    ....</div><div class="line">&#125;</div><div class="line">function stopAnination()&#123;</div><div class="line">    ....</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>这种做法很简单，但是你无法创建可以保存状态并且具有一些仅对其内部状态进行操作的方法的动画对象。</p><br><p>下面的代码定义了一个类，你可以用它创建这种对象：</p>
+<p>这种做法很简单，但是你无法创建可以保存状态并且具有一些仅对其内部状态进行操作的方法的动画对象。</p><br><a id="more"></a><br><p>下面的代码定义了一个类，你可以用它创建这种对象：</p>
 
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">&lt;!--more--&gt;</div><div class="line">/*Anim class.*/</div><div class="line"> var Anim = function()&#123;</div><div class="line">    ....</div><div class="line"> &#125;;</div><div class="line"> Anim.prototype.start = function()&#123;</div><div class="line">    ....</div><div class="line"> &#125;;</div><div class="line"> Anim.prototype.stop = function()&#123;</div><div class="line">    ....</div><div class="line"> &#125;;</div><div class="line"></div><div class="line"> /*Usage.*/</div><div class="line"> var myAnim = new Anim();</div><div class="line"> myAnim.start();</div><div class="line"> ....</div><div class="line"> myAnim.stop();</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">/*Anim class.*/</div><div class="line"> var Anim = function()&#123;</div><div class="line">    ....</div><div class="line"> &#125;;</div><div class="line"> Anim.prototype.start = function()&#123;</div><div class="line">    ....</div><div class="line"> &#125;;</div><div class="line"> Anim.prototype.stop = function()&#123;</div><div class="line">    ....</div><div class="line"> &#125;;</div><div class="line"></div><div class="line"> /*Usage.*/</div><div class="line"> var myAnim = new Anim();</div><div class="line"> myAnim.start();</div><div class="line"> ....</div><div class="line"> myAnim.stop();</div></pre></td></tr></table></figure>
 <p>上述代码定义了一个名为Anim的类，并把两个方法赋给该类的prototype的属性。</p><br><p>如果你更喜欢把类的定义封装在一条声明中，则可以改用下面的代码：</p>
 
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">/*Anim class, with a slightly different syntax for declaring methods*/</div><div class="line">var Anim = function()&#123;</div><div class="line">    ....</div><div class="line"> &#125;;</div><div class="line"> Anim.prototype = &#123;</div><div class="line">    start : function()&#123;</div><div class="line">        ....</div><div class="line">    &#125;;</div><div class="line">    stop : function()&#123;</div><div class="line">        ....</div><div class="line">    &#125;;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
@@ -620,7 +620,7 @@
 <div class="theme-info">
   Theme -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Pisces
+    NexT.Mist
   </a>
 </div>
 
@@ -691,13 +691,6 @@
 
   
   
-
-
-  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
-
-
 
   
   <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
