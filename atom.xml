@@ -289,21 +289,14 @@ Pragma: no-cache
     <link href="http://yoursite.com/2017/02/21/Running-tests/"/>
     <id>http://yoursite.com/2017/02/21/Running-tests/</id>
     <published>2017-02-22T03:56:23.000Z</published>
-    <updated>2017-03-01T02:53:49.000Z</updated>
+    <updated>2017-03-02T01:30:27.000Z</updated>
     
-    <content type="html"><![CDATA[<p>First, make sure you look at the [[Getting started]] page for the list of prerequisites, including those under <code>Additional prerequisites to run the functional tests</code>.</p>
-<p>All tests use xunit; this includes the unit tests and functional tests.</p>
-<h2 id="Unit-tests"><a href="#Unit-tests" class="headerlink" title="Unit tests"></a>Unit tests</h2><p>To run the unit tests just use build.cmd or use the VS 2012 XUnit.net runner (or <a href="http://www.testdriven.net/" target="_blank" rel="external">Test Driven .NET</a>) to run them. They are in <code>Kudu.Core.Test</code>.<br><a id="more"></a></p>
-<h2 id="Functional-tests"><a href="#Functional-tests" class="headerlink" title="Functional tests"></a>Functional tests</h2><p>The functional tests are located in the <code>Kudu.FunctionalTests</code> project. Running them requires the following software to be installed.</p>
-<p>The functional tests take about 10 minutes to run.</p>
-<p>Note that all tests end up reusing the same IIS application to avoid creating a new one for each. By default, it’s called <code>TestRunnerSite</code>. You can configure that under <code>Kudu.FunctionalTests\App.config</code>.</p>
+    <content type="html"><![CDATA[<div class="row"><br><div class="col-md-6 col-xs-12"><br>First, make sure you look at the [[Getting started]] page for the list of prerequisites, including those under <code>Additional prerequisites to run the functional tests</code>.<br></div><br>All tests use xunit; this includes the unit tests and functional tests.<br><div class="col-md-6 col-xs-12"><br>## Unit tests<br>To run the unit tests just use build.cmd or use the VS 2012 XUnit.net runner (or <a href="http://www.testdriven.net/" target="_blank" rel="external">Test Driven .NET</a>) to run them. They are in <code>Kudu.Core.Test</code>.<br><a id="more"></a><br>## Functional tests<br>The functional tests are located in the <code>Kudu.FunctionalTests</code> project. Running them requires the following software to be installed.<br><br>The functional tests take about 10 minutes to run.<br><br>Note that all tests end up reusing the same IIS application to avoid creating a new one for each. By default, it’s called <code>TestRunnerSite</code>. You can configure that under <code>Kudu.FunctionalTests\App.config</code>.<br></div><br></div>
 ]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;First, make sure you look at the [[Getting started]] page for the list of prerequisites, including those under &lt;code&gt;Additional prerequisites to run the functional tests&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;All tests use xunit; this includes the unit tests and functional tests.&lt;/p&gt;
-&lt;h2 id=&quot;Unit-tests&quot;&gt;&lt;a href=&quot;#Unit-tests&quot; class=&quot;headerlink&quot; title=&quot;Unit tests&quot;&gt;&lt;/a&gt;Unit tests&lt;/h2&gt;&lt;p&gt;To run the unit tests just use build.cmd or use the VS 2012 XUnit.net runner (or &lt;a href=&quot;http://www.testdriven.net/&quot;&gt;Test Driven .NET&lt;/a&gt;) to run them. They are in &lt;code&gt;Kudu.Core.Test&lt;/code&gt;.&lt;br&gt;
+      &lt;div class=&quot;row&quot;&gt;&lt;br&gt;&lt;div class=&quot;col-md-6 col-xs-12&quot;&gt;&lt;br&gt;First, make sure you look at the [[Getting started]] page for the list of prerequisites, including those under &lt;code&gt;Additional prerequisites to run the functional tests&lt;/code&gt;.&lt;br&gt;&lt;/div&gt;&lt;br&gt;All tests use xunit; this includes the unit tests and functional tests.&lt;br&gt;&lt;div class=&quot;col-md-6 col-xs-12&quot;&gt;&lt;br&gt;## Unit tests&lt;br&gt;To run the unit tests just use build.cmd or use the VS 2012 XUnit.net runner (or &lt;a href=&quot;http://www.testdriven.net/&quot;&gt;Test Driven .NET&lt;/a&gt;) to run them. They are in &lt;code&gt;Kudu.Core.Test&lt;/code&gt;.&lt;br&gt;
     
     </summary>
     
